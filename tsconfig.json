@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "esnext",
+    "strict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "strictNullChecks": true,
+    "noImplicitReturns": true,
+    "noEmitOnError": true,
+    "newLine": "LF",
+    "pretty": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "declaration": false,
+    "paths": {
+      "game/*": ["src/*"],
+      "jam/*": ["node_modules/jam-engine/src/*"]
+    }
+  },
+  "files": [
+    "node_modules/phaser3-docs/typescript/phaser.d.ts",
+    "src/defs.d.ts",
+    "src/index.ts"
+  ]
+}

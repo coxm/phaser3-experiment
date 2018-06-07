@@ -1,0 +1,40 @@
+<div id="manual" style="display:hidden">
+  <h2>RoboFlop 2000&#8482; manual</h2>
+  <p>Congratulations on having purchsed your RoboFlop 2000&#8482;!</p>
+
+  <p>We're sure you'll <em>love</em> this product. Unfortunately due to the nature of
+    its Finite Learning Operational Personalisation&#8482; interface, we cannot offer
+    refunds at this point.</p>
+
+  <h3>Programming your RoboFlop 2000&#8482;</h3>
+  <p>To program your RoboFlop 2000&#8482;, simply write and execute a JavaScript
+  <code class="code main">main</code> function as follows. The function will be passed a
+  <code class="code tick">tick</code> count, and several functions:
+  <code class="code walk">walk</code>, <code class="code turn">turn</code>, and
+  <code class="code wait">wait</code>.
+
+  <p>Please consult the tooltips for information on each function.</p>
+
+  <p>Calling one of these functions in <code class="code main">main</code> will dispatch
+    an appropriate command to the robot, which will then act accordingly.</p>
+
+  <h3>Example</h3>
+  <div class="example">
+    <code>// Walk forward two spaces, then turn anti-clockwise.</code>
+    <code>walk(tick &lt; 2);</code>
+    <code>turn(tick === 2 ? -1 : 0);</code>
+  </div>
+
+  <p>Please be advised that longer program sources will result in exponentially more
+    signals being sent between this controller and your RoboFlop 2000&#8482;. Reduce your
+    code footprint to improve efficiency. Effective utilisation of function return values
+    can help reduce code bloat. FlopCorp&#174; may not be held responsible for any
+    breakages caused by difficult-to-read or erroneous programs.</p>
+
+  <p><strong class="warning">Warning:</strong> Issuing more than one command in a single
+    update causes undefined behaviour. Doing so <strong>will void the warranty</strong>
+    and may damage the product. We regret that we cannot offer any repair advice in such
+    cases.</p>
+
+  <button type="button" id="manual-off-btn">Accept terms</button>
+</div>
