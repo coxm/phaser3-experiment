@@ -34,6 +34,6 @@
   "author": "coxm",
   "license": "GPL-3.0",
   "dependencies": {
-    "phaser": "3"
+    "phaser": "3.9.0"
   }
 }
