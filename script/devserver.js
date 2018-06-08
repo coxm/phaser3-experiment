@@ -17,9 +17,9 @@ const serverConfig = {
   hot: false,
 };
 if (!IS_PROD) {
-	serverConfig.contentBase.push(
-		ROOT_DIR, // For loading node modules.
-	);
+  serverConfig.contentBase.push(
+    ROOT_DIR, // For loading node modules.
+  );
 }
 
 

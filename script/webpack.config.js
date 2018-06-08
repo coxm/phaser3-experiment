@@ -25,6 +25,7 @@ const entry = [path.resolve(REPO_ROOT, 'src/index.ts')];
 if (!IS_PROD) {
   entry.unshift(`webpack-dev-server/client?http://${HOST}:${PORT}`);
 }
+
 module.exports = {
   mode: IS_PROD ? 'production' : 'development',
   target: 'web',
@@ -95,6 +96,7 @@ module.exports = {
       title: package.title,
       template: "./src/ejs/index.ejs",
       filename: "./index.html",
+      isProd: IS_PROD,
       minify: IS_PROD && {
         collapseBooleanAttributes: true,
         collapseInlineTagWhitespace: true,
@@ -112,8 +114,7 @@ module.exports = {
       chunkFilename: "[id].css"
     }),
   ],
-  externals: {
-  },
+  externals: IS_PROD ? {phaser: 'Phaser'} : {},
   stats: {
     chunks: true,
     assetsSort: 'size',
