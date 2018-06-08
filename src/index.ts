@@ -1,4 +1,6 @@
-import {AUTO, Game, Math as PhaserMath, Physics, Scene} from 'phaser';
+import {
+  AUTO, Game, GameObjects, Math as PhaserMath, Physics, Scene,
+} from 'phaser';
 
 import './css/index.css';
 
@@ -34,6 +36,8 @@ function preload (this: Scene): void {
 }
 
 
+let score: number = 0;
+let scoreText: GameObjects.Text;
 let platforms: Physics.Arcade.StaticGroup;
 let stars: Physics.Arcade.Group;
 let player: Physics.Arcade.Sprite;
@@ -85,6 +89,11 @@ function create(this: Scene): void {
 
   cursors = this.input.keyboard.createCursorKeys();
 
+  scoreText = this.add.text(16, 16, 'Score: 0', {
+    fontSize: '32px',
+    fill: '#000',
+  });
+
   function collectStar(
     player: Physics.Arcade.Sprite,
     star: Physics.Arcade.Sprite
@@ -92,6 +101,8 @@ function create(this: Scene): void {
     : void
   {
     star.disableBody(true, true);
+    score += 1;
+    scoreText.setText(`Score: ${score}`);
   }
 }
 
