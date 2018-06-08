@@ -39,9 +39,11 @@ function preload (this: Scene): void {
 let score: number = 0;
 let scoreText: GameObjects.Text;
 let platforms: Physics.Arcade.StaticGroup;
+let bombs: Physics.Arcade.Group;
 let stars: Physics.Arcade.Group;
 let player: Physics.Arcade.Sprite;
 let cursors: CursorKeys;
+let gameOver: boolean = false;
 function create(this: Scene): void {
   this.add.image(400, 300, 'sky');
 
@@ -87,6 +89,11 @@ function create(this: Scene): void {
   this.physics.add.collider(stars, platforms);
   this.physics.add.overlap(player, stars, collectStar as any, undefined, this);
 
+  // Bombs.
+  bombs = this.physics.add.group();
+  this.physics.add.collider(bombs, platforms);
+  this.physics.add.collider(player, bombs, hitBomb as any, undefined, this);
+
   cursors = this.input.keyboard.createCursorKeys();
 
   scoreText = this.add.text(16, 16, 'Score: 0', {
@@ -103,11 +110,40 @@ function create(this: Scene): void {
     star.disableBody(true, true);
     score += 1;
     scoreText.setText(`Score: ${score}`);
+    if (stars.countActive(true) === 0) {
+      stars.children.iterate((child: Physics.Arcade.Sprite): void => {
+        child.enableBody(true, child.x, 0, true, true);
+      }, null);
+      const x = (player.x < 400)
+        ? Phaser.Math.Between(400, 800)
+        : Phaser.Math.Between(0, 400);
+      const bomb = bombs.create(x, 16, 'bomb');
+      bomb.setBounce(1);
+      bomb.setCollideWorldBounds(true);
+      bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+      bomb.allowGravity = false;
+    }
+  }
+
+  function hitBomb(
+    this: Scene,
+    player: Physics.Arcade.Sprite,
+    bomb: Physics.Arcade.Sprite
+  )
+    : void
+  {
+    this.physics.pause();
+    player.setTint(0xff0000);
+    player.anims.play('turn');
+    gameOver = true;
   }
 }
 
 
 function update(this: Scene): void {
+  if (gameOver) {
+  }
+
   if (cursors!.left!.isDown) {
     player!.setVelocityX(-160);
     player!.anims.play('left', true);
